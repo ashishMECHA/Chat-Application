@@ -37,6 +37,7 @@ public class Client extends JFrame{
 
             startReading();
 //            startWriting();
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +45,7 @@ public class Client extends JFrame{
     }
 
     private void CreateGUI(){
-        this.setTitle("Client Messenger[END]");
+        this.setTitle("Client Messenger END");
         this.setSize(600,600);
         this.setLocationRelativeTo(null);  // center your window
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

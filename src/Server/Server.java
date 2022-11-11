@@ -1,13 +1,22 @@
 package Server;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.net.*;
 import java.io.*;
 
-public class Server {
+public class Server extends JFrame {
 
     ServerSocket server;
     Socket socket;
     BufferedReader br;
     PrintWriter out;
+
+    private JLabel heading = new JLabel("Server Area");
+    private JTextArea messageArea = new JTextArea();
+    private JTextField messageInput = new JTextField();
+    private Font font = new Font("Roberto",Font.PLAIN,20);
 
     public Server(){
 
@@ -20,8 +29,10 @@ public class Server {
            br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
            out = new PrintWriter(socket.getOutputStream());
 
+           CreateGUI();
+           handleEvents();
            startReading();
-           startWriting();
+//           startWriting();
 
 
        } catch(Exception e) {
@@ -40,10 +51,13 @@ public class Server {
                     String message = br.readLine();
                     if (message.equals("exit")) {
                         System.out.println("Client terminated the chat");
+                        JOptionPane.showMessageDialog(this, "Server terminated the chat");
+                        messageInput.setEnabled(false);
                         socket.close();
                         break;
                     }
-                    System.out.println("Client : " + message);
+//                    System.out.println("Client : " + message);
+                    messageArea.append("Client : "+ message+"\n");
 
                 }
             } catch(Exception e) {
@@ -77,6 +91,59 @@ public class Server {
         }
         };
         new Thread(r2).start();
+    }
+
+    private void CreateGUI(){
+        this.setTitle("Server Messenger END");
+        this.setSize(600,600);
+        this.setLocationRelativeTo(null);  // center your window
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Code for Components
+        heading.setFont(font);
+        messageArea.setFont(font);
+        messageInput.setFont(font);
+
+        heading.setHorizontalAlignment(SwingConstants.CENTER);  // To center the heading
+        heading.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        messageArea.setEditable(false);
+
+        this.setLayout(new BorderLayout());
+
+        //Adding components to frame
+        this.add(heading,BorderLayout.NORTH);
+        JScrollPane jScrollPane = new JScrollPane(messageArea);
+        this.add(jScrollPane,BorderLayout.CENTER);
+        this.add(messageInput,BorderLayout.SOUTH);
+
+        this.setVisible(true);
+    }
+
+    private void handleEvents() {
+        messageInput.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+//                System.out.println("key released " + e.getKeyCode());
+                if(e.getKeyCode() == 10){
+//                    System.out.println("Enter key pressed");
+                    String contentToSend = messageInput.getText();
+                    messageArea.append("Me :" + contentToSend+"\n");
+                    out.println(contentToSend);
+                    out.flush();
+                    messageInput.setText("");
+                    messageInput.requestFocus();
+                }
+            }
+        });
     }
 
 
