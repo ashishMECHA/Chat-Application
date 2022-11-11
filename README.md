@@ -22,6 +22,6 @@ First of all, we need an IDE(Integrated Development Environment) that supports J
 <li>I prefer IntelliJ IDE for running this project.</li>
 <li>Then, open the repository containing the project and at first run the server.java file and after that run client.java.</li>
 <li>This will open two windows</li>
-![Screenshot (133)](https://github.com/ashishMECHA/Chat-Application/blob/83d5a64c3c83c6dbadcaa688b0023f2ba0ce15c8/images/Screenshot%20(133).png)
+![Screenshot (133)](images/Screenshot (133).png)
 <li>Server and Client can send and recieve text messages</li>
 <li>You can run one of the program on different computer but IP address should be known and both programs should be running on same port.</li>
