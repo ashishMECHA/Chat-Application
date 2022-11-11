@@ -6,8 +6,7 @@ This project is made by using Java Networking & Socket Programming concepts. JAV
 <li>I have made two programs, one is playing a role of server and other of client.</li>
 <li>ServerSocket and Socket class is used to create server and client.</li>
 <li>Then a connection is established between them.</li>
-<li>Take input and output streams on both server and client.</li>
-
+<li>BufferedReader and Printwriter class both are used to read and write text from i/o streams. </li>
 
 
 ## What I learn
@@ -15,6 +14,7 @@ This project is made by using Java Networking & Socket Programming concepts. JAV
 👉 Establishing connection between sockets.            
 👉 Learn about the use of multi-threading in a project.      
 👉 Learn about creating a GUI by using Java Swing.
+
 
 ## How to run the Project
 First of all, we need an IDE(Integrated Development Environment) that supports Java.
